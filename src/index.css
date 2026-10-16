@@ -1,0 +1,158 @@
+@import "tailwindcss";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/syne/500.css";
+@import "@fontsource/syne/600.css";
+@import "@fontsource/syne/700.css";
+
+:root {
+  --font-body: "inter", sans-serif;
+  --font-heading: "syne", sans-serif;
+  --color-gradient: linear-gradient(
+    90deg,
+    #FF4D6D 0%,
+    #BD3EB2 25%,
+    #7B2FF7 50%,
+    #2F86F7 75%,
+    #2FF7ED 100%
+  );
+}
+@layer base {
+  body {
+    background-color: #000;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    overflow-x: clip;
+  }
+  h3 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+}
+@layer components {
+  .main-container {
+    max-width: 1600px;
+    width: 100%;
+    margin: auto;
+    padding-inline: 1rem;
+  }
+
+  .font-body { font-family: var(--font-body); }
+  .font-heading { font-family: var(--font-heading); }
+
+h1 {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 12px;
+    width: 100%;
+    height: 1vh;
+    background: var(--color-gradient);
+    z-index: -1;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 6px;
+  width: 99%;
+    height: 2px;
+    background: var(--color-gradient);
+    z-index: -1;
+  }
+}
+.text-stroke {
+  -webkit-text-stroke: 1px white;
+  color: transparent;
+}
+
+.btn {
+  background: linear-gradient(#000, #000) padding-box,
+  var(--color-gradient) border-box;
+}
+
+.btn:hover {
+  background: var(--color-gradient) padding-box,
+  var(--color-gradient) border-box;
+  color: white;
+}
+
+.btn-light {
+  background: linear-gradient(#fff, #fff) padding-box,
+  var(--color-gradient) border-box;
+  color: #000;
+}
+
+.btn-light:hover {
+  color: #fff;
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  width: max-content;
+  animation-duration: 24s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.animate-marquee {
+  animation-name: marquee-scroll;
+}
+
+.animate-marquee-reverse {
+  animation-name: marquee-scroll;
+  animation-direction: reverse;
+}
+
+@keyframes rotate360 {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg)}
+}
+
+.marquee-star1 {
+  animation: rotate360 10s linear infinite;
+  transform-origin: center;
+}
+
+.marquee-star2 {
+  animation: rotate360 10s linear infinite reverse;
+  transform-origin: center;
+}
+.menu-link {
+  font-size: 10vw;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .marquee-star1,
+  .marquee-star2 {
+    animation: none;
+  }
+}
+@media (max-width: 1023px) {
+  h1::before {
+    bottom: 4px;
+  }
+}
+@media (min-width: 1024px) {
+  .main-container { padding-inline: 3rem; }
+  .menu-link { font-size: 6vw; opacity: 0.6; }
+  .menu-link:hover { opacity: 1; }
+}
